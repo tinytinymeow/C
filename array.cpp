@@ -1,6 +1,3 @@
-#include <iostream>
-using namespace std;
-
 template <class y>
 class list{
 	private:
@@ -17,7 +14,7 @@ class list{
 		long size(){
 			return count;
 		}
-		y& operator [](y index){
+		y& operator [](long index){
 			if(index>=count){
 				count=index+1;
 				items=(y*)realloc(items,sizeof(y)*count);
@@ -25,7 +22,7 @@ class list{
 			return items[index];
 		}
 		void append(y item){
-			count+=1;
+			count=count+1;
 			items=(y*)realloc(items,sizeof(y)*count);
 			items[count-1]=item;			
 		}
@@ -125,17 +122,3 @@ class list{
 			delete []items;
 		}
 };
-
-int main(int argc, char** argv) {
-	list<int> l;
-	for(long i=0;i<10;i++){
-		l[i]=i;
-	}
-	list<int> l2=l.copy(2,7);
-	cout << "Hello World!!!\n";
-  cout << l2.size();
-	for(long i=0;i<l2.size();i++){
-		cout << l2[i];
-	}
-	return 0;
-}
